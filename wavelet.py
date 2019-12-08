@@ -22,8 +22,10 @@ class SingleNode(object):
 class WaveletTree(object):
     def __init__(self, refText):
         self.refText = refText
+        self.bitVectorlength = 0
         self.rootNode = SingleNode()
         self.createTree(self.rootNode, self.refText)
+        
 
     def findDifferentChars(self, refText):
         differentChars = []
@@ -55,11 +57,13 @@ class WaveletTree(object):
             for character in rootNode.text:
                 rootNode.bitVector.append(rootNode.characters[character])
                 
+                
                 if rootNode.characters[character] is 0:
                     rootNode.leftNodeText += character
                 else:
                     rootNode.rightNodeText += character
 
+            self.bitVectorlength += len(rootNode.bitVector)
             # Creating new nodes and recursively calling create_tree method
             rootNode.left = SingleNode()
             rootNode.pointerLeftRight[0] = rootNode.left
@@ -73,6 +77,7 @@ class WaveletTree(object):
             # This is a leaf
             for character in rootNode.text:
                 rootNode.bitVector.append(rootNode.characters[character])
+            self.bitVectorlength += len(rootNode.bitVector)
 
     def rank(self, node, position, character):
         bit = node.characters[character]

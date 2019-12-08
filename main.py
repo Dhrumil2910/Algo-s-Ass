@@ -7,16 +7,23 @@ def read_words(words_file):
         with open(words_file, 'r') as f:
             ret = []
             for line in f:
-               ret += line.split()
+               ret.append(line.split("\n")[0])
             return ret
 
 if (__name__ == '__main__'):
     inputfile = open("input.txt","r")
     T = inputfile.read()
+    
+    
+
     timeList = []
     patternLenList = []
     # start_time = time.time()
     FM = FMIndex(T)
+    inLen = len(T)*8
+    bitVectorLength = FM.bitVecLen
+    print("Bit Vector Length(in bits): ", FM.bitVecLen)
+    print("Input text lenght(in bits): ", inLen)
     #pattern file
     pattern_list = (read_words('patternFile.txt'))
     # searching each pattern

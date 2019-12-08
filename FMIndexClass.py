@@ -6,7 +6,7 @@ class FMIndex(object):
 	def __init__(self, text):
 		burrowsWheeler = BWT()
 		self.bwtString, self.suffixArray = burrowsWheeler.evaluateBWT(text)
-		self.charOcc = burrowsWheeler.occAtEachIndex()
+		self.charOcc, self.bitVecLen = burrowsWheeler.occAtEachIndex()
 		self.totalChars = burrowsWheeler.totalCharacters(self.bwtString)
 		self.firstColCount = burrowsWheeler.firstColCounts(self.totalChars)
 

@@ -5,6 +5,7 @@ from wavelet import WaveletTree
 class BWT(object):
 
     def __init__(self):
+        self.bitVectLen = 0
         self.BWTString = ""
         self.BWTArray = []
         self.sortedSuffices = []
@@ -46,7 +47,9 @@ class BWT(object):
 		for i in range(0, len(self.BWTString)):
 			for c in charOccurances.keys():
 				charOccurances[c] += [tree.rank(tree.rootNode, i, c)]
-		return charOccurances
+		
+		self.bitVectLen = tree.bitVectorlength
+		return (charOccurances, self.bitVectLen)
 
     
      #Find the total number of each character inside the text
