@@ -2,7 +2,6 @@
 import time
 import os
 import sys
-import resource
 
 #Wavelet Node class
 class SingleNode(object):
@@ -19,7 +18,7 @@ class SingleNode(object):
         self.text = ""
         self.pointerLeftRight = {}
 
-
+#Wavelet Tree class
 class WaveletTree(object):
     def __init__(self, refText):
         self.refText = refText
@@ -90,19 +89,3 @@ class WaveletTree(object):
             # This is a leaf, we're done
             return counter
 
-
-if __name__ == "__main__":
-    text = "Mississippi$"
-    tree = WaveletTree(text)
-    while 1:
-            # print "Run 'rank' function for character (enter character) or exit with 'c': "
-            character = str(raw_input())
-            if character == 'c':
-                break
-            else:
-                length = len(text)
-                try:
-                    print character + ": " + str(tree.rank(tree.rootNode, length, character))
-                except KeyError:
-                    # print "Character doesn't exist (and is case-sensitive)"
-                    break
